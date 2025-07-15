@@ -3,16 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
-    "dev:lib": "vite build --watch --config finance-library/vite.config.ts",
-    "dev:all": "concurrently \"npm run dev:lib\" \"npm run dev\"",
-    "build": "next build",
-    "start": "next start",
+    "dev": "npm run build:lib && next dev --turbopack",
+    "build:lib": "cd finance-library && npm run build",
+    "build": "npm run build:lib && next build",
+    "start": "npm run build:lib && next start",
     "lint": "next lint"
   },
   "dependencies": {
     "jspdf": "^3.0.1",
     "next": "15.3.5",
+    "papaparse": "^5.5.3",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-loading-indicators": "^1.0.1",
@@ -21,9 +21,9 @@
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@types/node": "^20",
+    "@types/papaparse": "^5.3.16",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "concurrently": "^9.2.0",
     "eslint": "^9",
     "eslint-config-next": "15.3.5",
     "sass": "^1.89.2",

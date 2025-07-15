@@ -31,7 +31,7 @@ export default function HomePage() {
     pdfDoc.text(`To: ${new Date(data.toDate).toLocaleDateString()}`, 20, 60);
     pdfDoc.text(`Total Income: R${data.totalIncome.toFixed(2)}`, 20, 70);
     pdfDoc.text(`Total Expenses: R${data.totalExpenses.toFixed(2)}`, 20, 80);
-    pdfDoc.text(`Net Profit: R${data.nett.toFixed(2)}`, 20, 90);
+    pdfDoc.text(`Net ${data.nett >= 0 ? "Profit" : "Loss"}: R${data.nett.toFixed(2)}`, 20, 90);
 
     pdfDoc.setFontSize(14);
     pdfDoc.text("Category Breakdown:", 20, 110);

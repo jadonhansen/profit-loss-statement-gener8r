@@ -9,6 +9,16 @@ interface Props {
 
 export default function CategoryGraph({ statementData }: Props) {
 
+    const pieChartData = {
+        ...statementData,
+        nettByCategory: statementData.nettByCategory
+            .filter((item) => item.value !== 0)
+            .map((item) => ({
+                ...item,
+                absoluteValue: Math.abs(item.value),
+            }))
+    }
+
     return (
         <div className={styles.chartContainer}>
             <h3>Category Distribution</h3>
@@ -16,8 +26,8 @@ export default function CategoryGraph({ statementData }: Props) {
             <ResponsiveContainer width="100%" height={300}>
                 <PieChart>
                     <Pie
-                        data={statementData.nettByCategory}
-                        dataKey="value"
+                        data={pieChartData.nettByCategory}
+                        dataKey="absoluteValue"
                         nameKey="category"
                         cx="50%"
                         cy="50%"
@@ -25,7 +35,7 @@ export default function CategoryGraph({ statementData }: Props) {
                         fill="#8884d8"
                         label
                     >
-                        {statementData.nettByCategory.map((entry, index) => (
+                        {pieChartData.nettByCategory.map((entry, index) => (
                             <Cell
                                 key={`cell-${index}`}
                                 fill={entry.value >= 0 ? "#27a956" : "#d82d2d"}

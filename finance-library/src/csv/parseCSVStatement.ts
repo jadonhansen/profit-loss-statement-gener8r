@@ -1,38 +1,38 @@
 import type { PnLResult } from "../types";
-import { isNumeric, parseCSV } from "./helpers";
+
+import Papa from "papaparse";
 
 
-export const processCSVStatement = (csv: string): PnLResult => {
-  const rows = parseCSV(csv);
-  const [header, ...data] = rows;
+export function processCSVStatement(csvText: string): PnLResult {
+  const parsed = Papa.parse(csvText, {
+    header: true,
+    skipEmptyLines: "greedy",
+    dynamicTyping: true,
+    transformHeader: (header) => header.trim().toLowerCase(),
+  });
 
-  const dateIdx = header.findIndex((h) => h.toLowerCase() === 'date');
-  const amountIdx = header.findIndex((h) => h.toLowerCase() === 'amount');
-  const categoryIdx = header.findIndex((h) => h.toLowerCase() === 'category');
-
-  if (dateIdx === -1 || amountIdx === -1 || categoryIdx === -1) {
-    throw new Error('CSV must contain Date, Amount, and Category columns');
+  if (parsed.errors.length > 0) {
+    throw new Error("CSV parsing failed: " + parsed.errors[0].message);
   }
+
+  const rows = parsed.data as Record<string, any>[];
 
   let totalIncome = 0;
   let totalExpenses = 0;
-  let fromDate: number | null = null;
-  let toDate: number | null = null;
+  let fromDate: number | undefined;
+  let toDate: number | undefined;
+
   const categoryTotals: Record<string, number> = {};
 
-  for (const row of data) {
-    const dateStr = row[dateIdx];
-    const amountStr = row[amountIdx];
-    const category = row[categoryIdx] || 'Uncategorized';
+  for (const row of rows) {
+    const amount = typeof row["amount"] === "number" ? row["amount"] : parseFloat(row["amount"]);
+    const category = row["category"]?.toString().trim() || "Uncategorized";
+    const date = new Date(row["date"]).getTime();
 
-    if (!isNumeric(amountStr)) continue;
+    if (isNaN(date) || isNaN(amount)) continue;
 
-    const amount = parseFloat(amountStr);
-    const date = new Date(dateStr).getTime();
-    if (isNaN(date)) continue;
-
-    if (fromDate === null || date < fromDate) fromDate = date;
-    if (toDate === null || date > toDate) toDate = date;
+    if (!fromDate || date < fromDate) fromDate = date;
+    if (!toDate || date > toDate) toDate = date;
 
     if (amount > 0) totalIncome += amount;
     else totalExpenses += Math.abs(amount);
@@ -45,12 +45,12 @@ export const processCSVStatement = (csv: string): PnLResult => {
     value: parseFloat(value.toFixed(2)),
   }));
 
-  return ({
+  return {
     fromDate: fromDate ?? 0,
     toDate: toDate ?? 0,
     totalIncome: parseFloat(totalIncome.toFixed(2)),
     totalExpenses: parseFloat(totalExpenses.toFixed(2)),
     nett: parseFloat((totalIncome - totalExpenses).toFixed(2)),
     nettByCategory,
-  });
+  };
 }

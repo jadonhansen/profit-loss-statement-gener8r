@@ -55,6 +55,10 @@
       border: 1px solid var(--statement-border);
       border-radius: 8px;
     }
+
+    .fileInput:hover {
+      cursor: pointer;
+    }
   }
 
   .downloadBtn {

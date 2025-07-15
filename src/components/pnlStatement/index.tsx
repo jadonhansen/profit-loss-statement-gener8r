@@ -27,7 +27,7 @@ export default function PnLResults({ statementData }: Props) {
                     <strong className={styles.expense}>{formatCurrency(statementData.totalExpenses)}</strong>
                 </div>
                 <div className={styles.item}>
-                    <span>Net Profit</span>
+                    <span>Net {statementData.nett >= 0 ? "Profit" : "Loss"}</span>
                     <strong className={statementData.nett >= 0 ? styles.income : styles.expense}>
                         {formatCurrency(statementData.nett)}
                     </strong>
