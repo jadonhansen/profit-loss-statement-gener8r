@@ -31,8 +31,7 @@
       visibility: hidden;
       opacity: 0;
       width: 220px;
-      background-color: #111827;
-      color: #f9fafb;
+      background-color: var(--tooltip-bg);
       text-align: left;
       border-radius: 0.4rem;
       padding: 0.5rem;

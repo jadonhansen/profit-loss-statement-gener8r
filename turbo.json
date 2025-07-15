@@ -1,0 +1,11 @@
+{
+  "tasks": {
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": [".next/**", "public/**"]
+    },
+    "dev": {
+      "cache": false
+    }
+  }
+}
