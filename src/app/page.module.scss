@@ -2,46 +2,65 @@
   max-width: 48rem;
   margin: 0 auto;
   padding: 1.5rem;
+
+  .heading {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+
+  .tooltipWrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .tooltip {
+    position: relative;
+    cursor: pointer;
+    font-weight: bold;
+
+    &:hover .tooltipText {
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+
+  .tooltipText {
+    visibility: hidden;
+    opacity: 0;
+    width: 220px;
+    background-color: #111827;
+    color: #f9fafb;
+    text-align: left;
+    border-radius: 0.4rem;
+    padding: 0.5rem;
+    position: absolute;
+    z-index: 10;
+    top: 125%;
+    left: 0;
+    transition: opacity 0.3s ease;
+    font-size: 0.75rem;
+  }
+
+  .form {
+    margin-bottom: 1.5rem;
+    
+    .fileInput {
+      display: block;
+      width: 100%;
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+  }
+  
+  .error {
+    margin-top: 1rem;
+    color: #dc2626; // red-600
+    font-weight: 600;
+  }
 }
 
-.heading {
-  font-size: 1.5rem;
-  font-weight: bold;
-  margin-bottom: 1rem;
-}
-
-.form {
-  margin-bottom: 1.5rem;
-}
-
-.fileInput {
-  display: block;
-  width: 100%;
-  padding: 0.5rem;
-  border: 1px solid #ccc;
-}
-
-.error {
-  margin-top: 1rem;
-  color: #dc2626; // red-600
-  font-weight: 600;
-}
-
-.result {
-  margin-top: 1.5rem;
-  padding: 1rem;
-  border: 1px solid #ddd;
-  border-radius: 0.375rem;
-  background-color: #f9fafb; // gray-50
-}
-
-.resultTitle {
-  font-size: 1.125rem;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-}
-
-.resultList {
-  list-style-type: disc;
-  margin-left: 1.5rem;
-}

@@ -56,7 +56,17 @@ export default function HomePage() {
   return (
     <main className={styles.container}>
       <h1 className={styles.heading}>Upload your bank transaction history</h1>
-      <p>File must be in CSV format</p>
+
+      <div className={styles.tooltipWrapper}>
+        <label htmlFor="csvInput">Upload CSV File</label>
+        <span className={styles.tooltip}>ⓘ
+          <span className={styles.tooltipText}>
+            Expected format: "Date, Description, Amount, Category"<br />
+            - Dates in YYYY-MM-DD<br />
+            - Amounts: positive = income, negative = expense
+          </span>
+        </span>
+      </div>
 
       <form className={styles.form}>
         <input
