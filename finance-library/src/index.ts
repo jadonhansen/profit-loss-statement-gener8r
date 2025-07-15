@@ -1,15 +1,13 @@
-(() => {
-    console.log("Finance Library loaded");
+import { processCSVStatement } from "./csv/parseCSVStatement";
 
-    const PnLProcessor = {
-        processCSV(csv: string) {
-            return {
-                totalIncome: 0,
-                totalExpenses: 0,
-                netProfit: 0,
-            };
-        },
+(() => {
+    console.log("Finance Library loaded.");
+
+    const parser = {
+        processCSVStatement
     };
 
-    (window as any).PnLProcessor = PnLProcessor;
+    (window as any).Parser = parser;
 })();
+
+

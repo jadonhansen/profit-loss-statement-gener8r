@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "dev:lib": "vite build --watch --config finance-library/vite.config.ts",
-    "dev:all": "concurrently \"npm run dev\" \"npm run dev:lib\"",
+    "dev:all": "concurrently \"npm run dev:lib\" \"npm run dev\"",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -23,6 +23,7 @@
     "concurrently": "^9.2.0",
     "eslint": "^9",
     "eslint-config-next": "15.3.5",
+    "sass": "^1.89.2",
     "typescript": "^5"
   }
 }
