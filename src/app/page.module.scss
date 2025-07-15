@@ -56,10 +56,25 @@
       border-radius: 8px;
     }
   }
-  
+
+  .downloadBtn {
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    background-color: #2f6bec;
+    color: white;
+    border: none;
+    border-radius: 0.38rem;
+    cursor: pointer;
+    font-weight: 500;
+
+    &:hover {
+      background-color: #1d4ed8;
+    }
+  }
+
   .error {
     margin-top: 1rem;
-    color: #dc2626; // red-600
+    color: #dc2626;
     font-weight: 600;
   }
 }

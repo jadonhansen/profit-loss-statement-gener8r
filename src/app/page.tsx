@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import jsPDF from "jspdf";
 
 import styles from "./page.module.scss";
 import PnLResults from "./components/pnlStatement";
@@ -9,6 +10,33 @@ import { PnLResult } from "../../finance-library/src/types";
 export default function HomePage() {
   const [result, setResult] = useState<PnLResult | undefined>();
   const [error, setError] = useState<string | undefined>();
+
+
+  const generatePDF = (data: PnLResult): void => {
+    const pdfDoc = new jsPDF();
+
+    pdfDoc.setFontSize(16);
+    pdfDoc.text("Profit & Loss Summary", 20, 20);
+
+    pdfDoc.setFontSize(12);
+    pdfDoc.text(`From: ${new Date(data.fromDate).toLocaleDateString()}`, 20, 30);
+    pdfDoc.text(`To: ${new Date(data.toDate).toLocaleDateString()}`, 20, 40);
+    pdfDoc.text(`Total Income: R${data.totalIncome.toFixed(2)}`, 20, 50);
+    pdfDoc.text(`Total Expenses: R${data.totalExpenses.toFixed(2)}`, 20, 60);
+    pdfDoc.text(`Net Profit: R${data.nett.toFixed(2)}`, 20, 70);
+
+    pdfDoc.text("Category Breakdown:", 20, 90);
+
+    data.nettByCategory.forEach((item, index) => {
+      pdfDoc.text(
+        `${item.category}: R${item.value.toFixed(2)}`,
+        25,
+        100 + index * 10
+      );
+    });
+
+    pdfDoc.save("pnl-summary.pdf");
+  }
 
 
   const parseCSV = (reader: FileReader) => {
@@ -81,7 +109,15 @@ export default function HomePage() {
         <div className={styles.error}>{error}</div>
       )}
 
-      {result && <PnLResults statementData={result} />}
+      {result ?
+        <>
+          <PnLResults statementData={result} />
+          <button onClick={() => generatePDF(result)} className={styles.downloadBtn}>
+            Download PDF
+          </button>
+        </>
+        :
+        undefined}
     </main>
   );
 }
