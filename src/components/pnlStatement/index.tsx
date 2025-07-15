@@ -10,7 +10,7 @@ interface Props {
 export default function PnLResults({ statementData }: Props) {
 
     return (
-        <div className={styles.container}>
+        <div className={`${styles.container} ${styles.fadeIn}`}>
             <h2 className={styles.heading}>Profit & Loss Summary</h2>
             <p className={styles.dateRange}>
                 From <strong>{formatDate(statementData.fromDate)}</strong> to{" "}

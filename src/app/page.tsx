@@ -2,8 +2,9 @@
 
 import { useState } from "react";
 import jsPDF from "jspdf";
-
 import styles from "./page.module.scss";
+import { OrbitProgress } from "react-loading-indicators";
+
 import PnLResults from "../components/pnlStatement";
 import { PnLResult } from "../../finance-library/src/types";
 import CategoryGraph from "@/components/categoryGraph";
@@ -13,6 +14,7 @@ export default function HomePage() {
 
   const [result, setResult] = useState<PnLResult | undefined>();
   const [error, setError] = useState<string | undefined>();
+  const [loading, setLoading] = useState<boolean>(false);
 
 
   const generatePDF = (data: PnLResult): void => {
@@ -54,14 +56,17 @@ export default function HomePage() {
 
       try {
         const output = window.Parser.processCSVStatement(csvText);
+
         setResult(output);
       } catch (error) {
         setError("Failed to process the CSV file.");
         console.error(error);
       }
     } else {
-      console.warn("'window.Parser' does not exist.");
+      setError("Error processing CSV file.");
     }
+
+    setLoading(false);
   }
 
 
@@ -75,6 +80,7 @@ export default function HomePage() {
       return;
     }
 
+    setLoading(true);
     setError(undefined);
     setResult(undefined);
 
@@ -84,6 +90,7 @@ export default function HomePage() {
 
     reader.onerror = () => {
       setError("Could not read CSV file. Please try again.");
+      setLoading(false);
     };
 
     reader.readAsText(file);
@@ -116,6 +123,10 @@ export default function HomePage() {
       {error && (
         <div className={styles.error}>{error}</div>
       )}
+
+      {loading &&
+        <OrbitProgress color="#1d9348" size="small" />
+      }
 
       {result ?
         <>

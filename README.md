@@ -14,6 +14,12 @@ personal profit and loss statement from them."
 - Next.js & Typescript
 - Vite bundled Typescript library
 
+## Improvement ideas
+
+- Drag-and-drop CSV support
+- Group income/expenses by month if transactions overlap months
+
+
 ## Getting Started
 
 First, run the development server:
