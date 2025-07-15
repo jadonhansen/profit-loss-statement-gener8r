@@ -6,7 +6,7 @@
   .heading {
     font-size: 1.5rem;
     font-weight: bold;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
   }
 
   .tooltipWrapper {
@@ -15,50 +15,53 @@
     align-items: center;
     gap: 0.5rem;
     margin-bottom: 0.5rem;
-  }
 
-  .tooltip {
-    position: relative;
-    cursor: pointer;
-    font-weight: bold;
-
-    &:hover .tooltipText {
-      visibility: visible;
-      opacity: 1;
+    .tooltip {
+      position: relative;
+      cursor: pointer;
+      font-weight: bold;
+  
+      &:hover .tooltipText {
+        visibility: visible;
+        opacity: 1;
+      }
+    }
+  
+    .tooltipText {
+      visibility: hidden;
+      opacity: 0;
+      width: 220px;
+      background-color: #111827;
+      color: #f9fafb;
+      text-align: left;
+      border-radius: 0.4rem;
+      padding: 0.5rem;
+      position: absolute;
+      z-index: 10;
+      top: 125%;
+      left: 0;
+      transition: opacity 0.3s ease;
+      font-size: 0.75rem;
     }
   }
 
-  .tooltipText {
-    visibility: hidden;
-    opacity: 0;
-    width: 220px;
-    background-color: #111827;
-    color: #f9fafb;
-    text-align: left;
-    border-radius: 0.4rem;
-    padding: 0.5rem;
-    position: absolute;
-    z-index: 10;
-    top: 125%;
-    left: 0;
-    transition: opacity 0.3s ease;
-    font-size: 0.75rem;
-  }
-
   .form {
-    margin-bottom: 1.5rem;
-    
+    margin-bottom: 2rem;
+
     .fileInput {
       display: block;
       width: 100%;
       padding: 0.5rem;
-      border: 1px solid #ccc;
+      border: 1px solid var(--statement-border);
       border-radius: 8px;
     }
   }
 
   .downloadBtn {
+    display: flex;
+    justify-self: right;
     margin-top: 1rem;
+    margin-bottom: 2rem;
     padding: 0.5rem 1rem;
     background-color: #2f6bec;
     color: white;
@@ -73,9 +76,7 @@
   }
 
   .error {
-    margin-top: 1rem;
-    color: #dc2626;
-    font-weight: 600;
+    color: var(--expense);
   }
 }
 

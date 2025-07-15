@@ -1,21 +1,7 @@
-"use client";
-
 import { formatCurrency, formatDate } from "@/helpers/helpers";
 import styles from "./index.module.scss";
+import { PnLResult } from "@/types/types";
 
-interface PnLCategoryResult {
-    category: string;
-    value: number;
-}
-
-interface PnLResult {
-    fromDate: number;
-    toDate: number;
-    totalIncome: number;
-    totalExpenses: number;
-    nett: number;
-    nettByCategory: PnLCategoryResult[];
-}
 
 interface Props {
     statementData: PnLResult;
@@ -49,7 +35,7 @@ export default function PnLResults({ statementData }: Props) {
             </div>
 
             <div className={styles.categoryBreakdown}>
-                <h3>Breakdown by Category</h3>
+                <h4>Breakdown by Category</h4>
                 <ul>
                     {statementData.nettByCategory.map(({ category, value }) => (
                         <li key={category}>

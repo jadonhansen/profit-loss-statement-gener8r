@@ -1,12 +1,20 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --statement-bg: #f9fafb;
+  --statement-text: #111827;
+  --statement-border: #e5e7eb;
+  --income: #1d9348;
+  --expense: #d43737;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+    --statement-bg: #0f1319;
+    --statement-text: #f3f4f6;
+    --statement-border: #374151;
   }
 }
 

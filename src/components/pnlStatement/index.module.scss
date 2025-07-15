@@ -1,0 +1,63 @@
+.container {
+  border: 1px solid var(--statement-border);
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  background-color: var(--statement-bg);
+  color: var(--statement-text);
+  margin-top: 2rem;
+}
+
+.heading {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.dateRange {
+  margin-bottom: 1rem;
+  opacity: 0.8;
+}
+
+.summary {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.item {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1rem;
+}
+
+.income {
+  color: var(--income);
+}
+
+.expense {
+  color: var(--expense);
+}
+
+.categoryBreakdown {
+  border-top: 1px solid var(--statement-border);
+  padding-top: 1rem;
+
+  h4 {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  li {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.25rem 0;
+    border-bottom: 1px dashed var(--statement-border);
+  }
+}
