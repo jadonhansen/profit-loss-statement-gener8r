@@ -5,9 +5,9 @@ import jsPDF from "jspdf";
 import styles from "./page.module.scss";
 import { OrbitProgress } from "react-loading-indicators";
 
-import PnLResults from "../components/pnlStatement";
-import { PnLResult } from "../../finance-library/src/types";
 import CategoryGraph from "@/components/categoryGraph";
+import { PnLResult } from "@/types/types";
+import PnLResults from "@/components/pnlStatement";
 
 
 export default function HomePage() {
