@@ -8,6 +8,7 @@ import { OrbitProgress } from "react-loading-indicators";
 import CategoryGraph from "@/components/categoryGraph";
 import { PnLResult } from "@/types/types";
 import PnLResults from "@/components/pnlStatement";
+import { DownloadSampleButton } from "@/components/downloadSampleBtn";
 
 
 export default function HomePage() {
@@ -100,15 +101,20 @@ export default function HomePage() {
     <main className={styles.container}>
       <h1 className={styles.heading}>Personal Profit and Loss Statement</h1>
 
-      <div className={styles.tooltipWrapper}>
-        <label htmlFor="csvInput">Upload CSV File</label>
-        <span className={styles.tooltip}>ⓘ
-          <span className={styles.tooltipText}>
-            Expected format: &quot;Date, Description, Amount, Category&quot;<br />
-            - Dates in YYYY-MM-DD<br />
-            - Amounts: positive = income, negative = expense
+      <div className={styles.csvWrapper}>
+
+        <div className={styles.tooltipWrapper}>
+          <label htmlFor="csvInput">Upload CSV File</label>
+          <span className={styles.tooltip}>ⓘ
+            <span className={styles.tooltipText}>
+              Expected format: &quot;Date, Description, Amount, Category&quot;<br />
+              - Dates in YYYY-MM-DD<br />
+              - Amounts: positive = income, negative = expense
+            </span>
           </span>
-        </span>
+        </div>
+
+        <DownloadSampleButton />
       </div>
 
       <form className={styles.form}>

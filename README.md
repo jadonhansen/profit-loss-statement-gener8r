@@ -26,6 +26,7 @@ personal profit and loss statement from them.
 
 - Drag-and-drop CSV support
 - Group income/expenses by month if transactions overlap months
+- Currency picker support
 
 
 ## Getting Started

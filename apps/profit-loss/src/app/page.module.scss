@@ -1,4 +1,5 @@
 .container {
+  min-height: 100vh;
   max-width: 48rem;
   margin: 0 auto;
   padding: 1.5rem;
@@ -9,38 +10,45 @@
     margin-bottom: 2rem;
   }
 
-  .tooltipWrapper {
-    position: relative;
+  .csvWrapper {
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    gap: 0.5rem;
-    margin-bottom: 0.5rem;
+    flex-wrap: wrap;
 
-    .tooltip {
+    .tooltipWrapper {
       position: relative;
-      cursor: pointer;
-      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
   
-      &:hover .tooltipText {
-        visibility: visible;
-        opacity: 1;
+      .tooltip {
+        position: relative;
+        cursor: pointer;
+        font-weight: bold;
+    
+        &:hover .tooltipText {
+          visibility: visible;
+          opacity: 1;
+        }
       }
-    }
-  
-    .tooltipText {
-      visibility: hidden;
-      opacity: 0;
-      width: 220px;
-      background-color: var(--tooltip-bg);
-      text-align: left;
-      border-radius: 0.4rem;
-      padding: 0.5rem;
-      position: absolute;
-      z-index: 10;
-      top: 125%;
-      left: 0;
-      transition: opacity 0.3s ease;
-      font-size: 0.75rem;
+    
+      .tooltipText {
+        visibility: hidden;
+        opacity: 0;
+        width: 220px;
+        background-color: var(--tooltip-bg);
+        text-align: left;
+        border-radius: 0.4rem;
+        padding: 0.5rem;
+        position: absolute;
+        z-index: 10;
+        top: 125%;
+        left: 0;
+        transition: opacity 0.3s ease;
+        font-size: 0.75rem;
+      }
     }
   }
 
