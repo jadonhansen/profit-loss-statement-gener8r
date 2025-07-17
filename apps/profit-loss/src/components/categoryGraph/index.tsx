@@ -33,7 +33,8 @@ export default function CategoryGraph({ statementData }: Props) {
                         cy="50%"
                         outerRadius={100}
                         fill="#8884d8"
-                        label
+                        label={({ category }) => category}
+
                     >
                         {pieChartData.nettByCategory.map((entry, index) => (
                             <Cell
